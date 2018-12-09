@@ -1,0 +1,55 @@
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe.config
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.pdb
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.Form1.resources
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.Properties.Resources.resources
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csproj.GenerateResource.Cache
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.exe
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.pdb
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\System.Data.SQLite.dll
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormAdd.resources
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.dll
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.pdfa.dll
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.xtra.dll
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.xml
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csprojResolveAssemblyReference.cache
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csproj.ResolveComReference.cache
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormExport.resources
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe.config
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csproj.ResolveComReference.cache
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.exe
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.pdb
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.pdb
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.dll
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.pdfa.dll
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.xtra.dll
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\System.Data.SQLite.dll
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.xml
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csprojResolveAssemblyReference.cache
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.Form1.resources
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormAdd.resources
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormExport.resources
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.Properties.Resources.resources
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csproj.GenerateResource.Cache
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormComments.resources
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe.config
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.pdb
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.dll
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.pdfa.dll
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.xtra.dll
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\System.Data.SQLite.dll
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.xml
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csprojAssemblyReference.cache
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csproj.ResolveComReference.cache
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.Form1.resources
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormAdd.resources
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormComments.resources
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormExport.resources
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.Properties.Resources.resources
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csproj.GenerateResource.cache
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csproj.CoreCompileInputs.cache
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csproj.CopyComplete
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.exe
+C:\Остальное\Project Visual\Проект\dbProject\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.pdb
