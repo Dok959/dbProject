@@ -215,7 +215,8 @@ namespace WindowsFormsApplication
                     foreach (var f in filtered)
                     {
                         string name = Path.GetFileName(f.FullName);
-                        if (name.Contains(".txt")) {
+                        if (name.Contains(".txt") || name.Contains(".xlsx"))
+                        {
                             //findItherFiles(f.FullName);
                             pathToComments = f.FullName;
                         }
@@ -235,23 +236,170 @@ namespace WindowsFormsApplication
             }
         }
 
-        private void addImage(string file) {
+        private void importExcel(string file) {
+            DirSearch(Path.GetDirectoryName(file));
+            Image img = null;
 
-          
-            
+            try
+            {
+                img = Image.FromFile(pathToImage);
+            }
+            catch (System.ArgumentNullException) { }
+
+            ExcelObj.Application app = new ExcelObj.Application();
+            ExcelObj.Workbook workbook;
+            ExcelObj.Worksheet NwSheet;
+            ExcelObj.Range ShtRange;
+            DataTable dt = new DataTable();
+
+            workbook = app.Workbooks.Open(file, Missing.Value,
+               Missing.Value, Missing.Value, Missing.Value, Missing.Value,
+               Missing.Value, Missing.Value, Missing.Value, Missing.Value,
+               Missing.Value, Missing.Value, Missing.Value, Missing.Value,
+               Missing.Value);
+
+            //Устанавливаем номер листа из котрого будут извлекаться данные
+            //Листы нумеруются от 1
+            NwSheet = (ExcelObj.Worksheet)workbook.Sheets.get_Item(1);
+            ShtRange = NwSheet.UsedRange;
+            bool key = false;
+
+            for (int Cnum = 1; Cnum <= ShtRange.Columns.Count; Cnum++)
+            {
+
+
+                try
+                {
+                    dt.Columns.Add(
+                   new DataColumn((ShtRange.Cells[1, Cnum] as ExcelObj.Range).Value2.ToString()));
+                }
+                catch (Exception) { break; }
+                key = true;
+            }
+            dt.AcceptChanges();
+
+            if (!(key))
+                dt.Columns.Add();
+
+            string[] columnNames = new String[dt.Columns.Count];
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                // Получам текст задачи
+                
+                columnNames[0] = dt.Columns[i].ColumnName;
+
+                if ((columnNames[0] != null || columnNames[0] != "") && (pathToImage == null)) {
+                    SQLiteCommand cmd = new SQLiteCommand("INSERT INTO Tasks(desc_short) VALUES(@desc_short)", db);
+                    cmd.Parameters.Add("@desc_short", DbType.String).Value = columnNames[0].ToString();
+                    cmd.ExecuteNonQuery();
+                }
+                else if ((columnNames[0] == "" || columnNames[0] == "Column1") && (pathToImage != null))
+                {
+                    SQLiteCommand cmd = new SQLiteCommand("INSERT INTO Tasks(photo) VALUES(@photo)", db);
+                    cmd.Parameters.Add("@photo", DbType.Binary, 8000).Value = imageToByteArray(img);
+                    cmd.ExecuteNonQuery();
+                }
+                else {
+                    SQLiteCommand cmd = new SQLiteCommand("INSERT INTO Tasks(desc_short, photo) VALUES(@desc_short, @photo)", db);
+                    cmd.Parameters.Add("@desc_short", DbType.String).Value = columnNames[0].ToString();
+                    cmd.Parameters.Add("@photo", DbType.Binary, 8000).Value = imageToByteArray(img);
+                    cmd.ExecuteNonQuery();
+                }
+             
+                
+            }
+            app.Quit();
+
+
+            if (pathToComments != null) {
+                //________________ Получаем комментарии
+                dt = new DataTable();
+                workbook = app.Workbooks.Open(pathToComments, Missing.Value,
+            Missing.Value, Missing.Value, Missing.Value, Missing.Value,
+            Missing.Value, Missing.Value, Missing.Value, Missing.Value,
+            Missing.Value, Missing.Value, Missing.Value, Missing.Value,
+            Missing.Value);
+
+                //Устанавливаем номер листа из котрого будут извлекаться данные
+                //Листы нумеруются от 1
+                NwSheet = (ExcelObj.Worksheet)workbook.Sheets.get_Item(1);
+                ShtRange = NwSheet.UsedRange;
+                string str1 = ""; string str2 = "";
+
+                for (int Cnum = 1; Cnum <= ShtRange.Columns.Count; Cnum++)
+                {
+                    dt.Columns.Add(
+                       new DataColumn((ShtRange.Cells[1, Cnum] as ExcelObj.Range).Value2.ToString()));
+
+                    if (Cnum == 1)
+                        str1 = (ShtRange.Cells[1, Cnum] as ExcelObj.Range).Value2.ToString();
+                    else
+                        str2 = (ShtRange.Cells[1, Cnum] as ExcelObj.Range).Value2.ToString();
+                }
+
+                SQLiteCommand com = new SQLiteCommand("INSERT INTO Comments(code_tasks, text) VALUES(@code_tasks, @text)", db);
+                com.Parameters.Add("@code_tasks", DbType.String).Value = str1;
+                com.Parameters.Add("@text", DbType.String).Value = str2;
+                com.ExecuteNonQuery();
+
+
+                dt.AcceptChanges();
+
+                string[] columnNames1 = new String[dt.Columns.Count];
+                for (int i1 = 0; i1 < dt.Columns.Count; i1++)
+                {
+                    // Получам текст задачи
+                    columnNames1[0] = dt.Columns[i1].ColumnName;
+                }
+
+                for (int Rnum = 2; Rnum <= ShtRange.Rows.Count; Rnum++)
+                {
+                    DataRow dr = dt.NewRow();
+                    for (int Cnum = 1; Cnum <= ShtRange.Columns.Count; Cnum++)
+                    {
+                        if ((ShtRange.Cells[Rnum, Cnum] as ExcelObj.Range).Value2 != null)
+                        {
+                            dr[Cnum - 1] =
+                (ShtRange.Cells[Rnum, Cnum] as ExcelObj.Range).Value2.ToString();
+                        }
+                    }
+
+                    com = new SQLiteCommand("INSERT INTO Comments(code_tasks, text) VALUES(@code_tasks, @text)", db);
+                    com.Parameters.Add("@code_tasks", DbType.String).Value = dr[0].ToString();
+                    com.Parameters.Add("@text", DbType.String).Value = dr[1].ToString();
+                    com.ExecuteNonQuery();
+
+                    dt.Rows.Add(dr);
+
+                    dt.AcceptChanges();
+                }
+
+                app.Quit();
+            }
+
+        }
+
+        private void importTxt(string file) {
             //dtFile.Columns.Add("id");
             //dtFile.Columns.Add("text");
             //dtFile.Columns.Add("col1", typeof(byte[]));
             DirSearch(Path.GetDirectoryName(file));
             Image img = Image.FromFile(pathToImage);
-          
+            bool key = false;
+
             foreach (var line in File.ReadLines(file))
             {
                 if (pathToImage != null)
                 {
                     var array = line.Split('\t');
                     SQLiteCommand cmd = new SQLiteCommand("INSERT INTO Tasks(desc_short, photo) VALUES(@desc_short, @photo)", db);
-                    cmd.Parameters.Add("@desc_short", DbType.String).Value = array[1].ToString();
+
+                    try
+                    {
+                        cmd.Parameters.Add("@desc_short", DbType.String).Value = array[0].ToString();
+                    }
+                    catch (System.ArgumentOutOfRangeException) { }
+
                     cmd.Parameters.Add("@photo", DbType.Binary, 8000).Value = imageToByteArray(img);
                     cmd.ExecuteNonQuery();
                 }
@@ -261,10 +409,17 @@ namespace WindowsFormsApplication
                     cmd.Parameters.Add("@desc_short", DbType.String).Value = array[1].ToString();
                     cmd.ExecuteNonQuery();
                 }
-
-                
+                key = true;
             }
 
+
+            if (!(key)) {
+                SQLiteCommand cmd = new SQLiteCommand("INSERT INTO Tasks(photo) VALUES(@photo)", db);
+                cmd.Parameters.Add("@photo", DbType.Binary, 8000).Value = imageToByteArray(img);
+                cmd.ExecuteNonQuery();
+            }
+
+            // Если есть хоть один комментарий считываем
             foreach (var line in File.ReadLines(pathToComments)) {
                 if (pathToComments != null)
                 {
@@ -421,18 +576,27 @@ namespace WindowsFormsApplication
 
         private void pictBoxImport_Click(object sender, EventArgs e)
         {
+            // txt files (*.txt)|*.txt|All files (*.*)|*.*
             OpenFileDialog ofd = new OpenFileDialog();
-            dtFile = new DataTable();
-           
+            ofd.Filter = "Excel files(*.xlsx)|*.xlsx| Text files(*.txt)|*.txt";
 
-            if (ofd.ShowDialog() == DialogResult.OK) {
-                if (ofd.FileName.Contains(".txt")) {
-                    addImage(ofd.FileName);
-                   
-                    
+            dtFile = new DataTable();
+
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                if (ofd.FileName.Contains(".txt"))
+                {
+                    importTxt(ofd.FileName);
                 }
-                
+                if (ofd.FileName.Contains(".xlsx") || ofd.FileName.Contains(".xls"))
+                {
+                    importExcel(ofd.FileName);
+                }
             }
+
+
+
 
             //OpenFileDialog ofd = new OpenFileDialog();
             ////Задаем расширение имени файла по умолчанию.
@@ -450,7 +614,7 @@ namespace WindowsFormsApplication
             //DataTable dt = new DataTable();
             //if (ofd.ShowDialog() == DialogResult.OK)
             //{
-            //    //textBox1.Text = ofd.FileName;
+
 
             //    workbook = app.Workbooks.Open(ofd.FileName, Missing.Value,
             //    Missing.Value, Missing.Value, Missing.Value, Missing.Value,
@@ -472,6 +636,7 @@ namespace WindowsFormsApplication
             //    string[] columnNames = new String[dt.Columns.Count];
             //    for (int i = 0; i < dt.Columns.Count; i++)
             //    {
+            //        // Получам текст задачи
             //        columnNames[0] = dt.Columns[i].ColumnName;
             //    }
 
